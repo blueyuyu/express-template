@@ -1,9 +1,13 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
 
 const port = process.env.port || 5000;
+
+// 使用 body-parser 中间件来解析 JSON 请求体
+app.use(bodyParser.json());
 
 // 模拟的数据存储
 let items = [
@@ -35,7 +39,6 @@ app.post('/items', (req, res) => {
         id: items.length + 1,
         name: req.body.name
     };
-
     items.push(newItem);
     res.status(201).json(newItem);
 });
