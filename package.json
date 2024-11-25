@@ -1,0 +1,25 @@
+{
+  "name": "mycontacts-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blueyuyu/usersGet.git"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "blueyuyu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blueyuyu/usersGet/issues"
+  },
+  "homepage": "https://github.com/blueyuyu/usersGet#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
