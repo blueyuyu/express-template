@@ -14,8 +14,6 @@ app.use(bodyParser.json());
 // 引入路由
 const contactRoutes = require('./routes/contactRoutes')
 
-
-
 app.use("/api", contactRoutes);
 
 app.listen(port, () => {
