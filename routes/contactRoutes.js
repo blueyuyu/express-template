@@ -9,7 +9,7 @@ const {
     deleteContact
 } = require('../controllers/contactControllers.js');
 const asyncHandler = require("../middlewares/asyncHandler.js");
-
+const { body, validationResult } = require('express-validator');
 
 // GET 请求：获取所有项目
 router.route('/contacts').get(asyncHandler(getContact));
