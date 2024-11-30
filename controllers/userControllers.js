@@ -34,9 +34,10 @@ const userLogin = asyncHandler(async (req, res) => {
             throw new ValidationError("Invalid email or password")
         }
 
-        // 创建jwt
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // 创建jwt,expiresIn: 过期时间为8h
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '8h' });
         res.status(200).json({ message: 'Login successful', token });
+        
     } catch (error) {
         throw new DatabaseError({ message: error.message })
     }
