@@ -37,7 +37,7 @@ const userLogin = asyncHandler(async (req, res) => {
         // 创建jwt,expiresIn: 过期时间为8h
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '8h' });
         res.status(200).json({ message: 'Login successful', token });
-        
+
     } catch (error) {
         throw new DatabaseError({ message: error.message })
     }
@@ -74,8 +74,25 @@ const userRegister = asyncHandler(async (req, res) => {
     }
 })
 
-const getUserInfo = asyncHandler((req, res) => {
-    res.json("获取用户信息")
+const getUserInfo = asyncHandler(async (req, res) => {
+    // 根据给定的token解析出当前对象，并且返回对象的信息
+    try {
+        // 从req.user中获取用户ID
+        // console.log('req', req.auth, req.auth.userId);
+        const userId = req.auth.userId;
+        // 从数据库中查找用户
+        const user = await User.findById(userId).select('-password'); // 排除密码字段
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // 返回用户信息
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 })
 
 module.exports = {
